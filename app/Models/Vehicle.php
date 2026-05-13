@@ -3,12 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Table('vehicles')]
 class Vehicle extends Model
 {
-    #[Fillable(['brand', 'model', 'year', 'color'])]
-    protected $fillable = [];
+    protected $fillable = ['vin', 'make', 'model', 'year', 'engine'];
+
+    /**
+     * Get the parts for the vehicle.
+     */
+    public function parts(): HasMany
+    {
+        return $this->hasMany(Part::class);
+    }
 }
