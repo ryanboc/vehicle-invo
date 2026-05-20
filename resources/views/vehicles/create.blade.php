@@ -1,17 +1,38 @@
 <x-app-layout>
-    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <form action="{{ route('vehicles.store') }}" method="POST" class="bg-white p-6 rounded shadow">
-            @csrf
-            <h2 class="text-lg font-bold mb-4">Add New Vehicle to Inventory</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <input type="text" name="vin" placeholder="Enter VIN (Optional)" class="border p-2 rounded">
-                <input type="text" name="make" placeholder="Make (e.g. Toyota)" required class="border p-2 rounded">
-                <input type="text" name="model" placeholder="Model (e.g. Camry)" required class="border p-2 rounded">
-                <input type="number" name="year" placeholder="Year" required class="border p-2 rounded">
+    <div class="py-12">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white p-8 shadow rounded-lg border-t-4 border-blue-600">
+                <h2 class="text-2xl font-bold mb-6">Add Vehicle to Workshop</h2>
+                
+                <form action="{{ route('vehicles.store') }}" method="POST" class="space-y-4">
+                    @csrf
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <x-input-label value="Make (e.g. Toyota, Ford)" />
+                            <x-text-input name="make" class="w-full mt-1" required />
+                        </div>
+                        <div>
+                            <x-input-label value="Model (e.g. Hilux, Ranger)" />
+                            <x-text-input name="model" class="w-full mt-1" required />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <x-input-label value="Year" />
+                            <x-text-input name="year" type="number" value="2026" class="w-full mt-1" />
+                        </div>
+                        <div>
+                            <x-input-label value="VIN (Optional)" />
+                            <x-text-input name="vin" class="w-full mt-1" />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-700 text-white font-bold py-4 rounded-lg shadow hover:bg-blue-800 transition">
+                        Add Vehicle & Generate Stock
+                    </button>
+                </form>
             </div>
-            <button type="submit" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded">
-                Add Vehicle & Auto-Populate Parts
-            </button>
-        </form>
+        </div>
     </div>
 </x-app-layout>

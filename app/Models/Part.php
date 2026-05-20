@@ -12,7 +12,12 @@ class Part extends Model
         'name', 
         'part_number', 
         'quantity', 
-        'price'
+        'price',
+        'installed_at', 
+    ];
+
+    protected $casts = [
+        'installed_at' => 'datetime',
     ];
 
     public function vehicle()

@@ -25,6 +25,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // 2. Route for stock adjustments (Quantity +/-)
     Route::patch('/parts/{part}/update-stock', [VehicleController::class, 'updateStock'])->name('parts.update-stock');
+
+    // 3. Route for updating part details (e.g., changing the part number or name)
+    Route::put('/parts/{part}', [VehicleController::class, 'updatePart'])->name('parts.update');
 });
 
 // Profile Management
